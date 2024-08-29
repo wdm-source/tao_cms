@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="images/common.css" rel="stylesheet" type="text/css" />
+
+<title>taoCMS System Login</title>
+</head>
+<script language="javascript">
+function $tao(obj){
+   return (typeof obj == "object") ? obj : document.getElementById(obj);;
+}
+function checklogin(){
+	if($tao('loginname').value == ''){
+	alert('Please enter username');
+	return false;	
+	}
+	if($tao('loginpwd').value == ''){
+	alert('Please enter password');
+	return false;
+	}
+}
+
+</script>
+<body>
+
+<div id="loginbody">
+<form action="admin.php" method="post" onsubmit="return checklogin()">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="right">Username: </td>
+      <td >
+        <input name="name" type="text" title="Default is admin" id="loginname" tabindex="1"/>
+     </td>
+      <td rowspan="2"><input type="submit" name="Submit" id="loginbtn" tabindex="3" value="Login to Admin" /></td>
+    </tr>
+    <tr>
+      <td align="right">Password: </td>
+      <td><span class="pwd">
+        <input name="pwd" type="password" title="Default is tao" id="loginpwd" tabindex="2" /><input name="action" type="hidden" value="frame" />
+<input name="ctrl" type="hidden" value="checkUser" />
+      </span></td>
+      </tr>
+  </table>
+</form>
+</div>
+</body>
+</html>
+<script>$tao('loginname').focus();</script>

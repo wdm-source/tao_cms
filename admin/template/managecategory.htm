@@ -1,0 +1,28 @@
+{inc:header}
+<div class="controlban"><a href="?action=category&ctrl=add">+ Add</a><!-- IF[CREATHTML==1] --><a href="?action=category&ctrl=createhtml">[Generate Category Static]</a><!-- end --><a href="?action=category&ctrl=updateurl" onclick="return confirm('Are you sure you want to reset the URL? This operation will regenerate the URL based on the set URL rules.')">Reset URL</a><a href="?action=category&ctrl=createcache">Generate Category Cache</a></div>
+<table width="813" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr>
+  <th>ID</th>
+<th>Category</th>
+<th>Description</th>
+<th>Status</th>
+<th>Sort Order</th>
+<th>Actions</th>
+</tr>
+<!-- $list AS $atl -->  
+  <tr onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''">
+    <td>{atl['id']}</td>
+    <td><a href="?action=category&id={atl['id']}&ctrl=edit">{atl['name']}</a></td>
+	<td>{atl['intro']}</td>
+    <td>{run:}echo Base::catstatus($atl['status']);{/run}</td>
+    <td>{atl['orders']}</td>
+    <td><a href="?action=cms&ctrl=lists&cat={atl['id']}">Articles</a> · <a href="?action=category&id={atl['id']}&ctrl=edit">Edit</a> · <a href="?action=category&id={atl['id']}&ctrl=del" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+  </tr>
+  <!-- END -->
+</table>
+
+<!-- Used to display a prompt when there are no items -->
+<!-- IF[$_i==0] -->  
+<div style="clear:both;">Sorry, no categories available. Please add some first!</div>
+<!-- END -->  
+{inc:footer}

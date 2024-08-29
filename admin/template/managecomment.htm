@@ -1,0 +1,43 @@
+{inc:header}
+<form action="admin.php" method="post" id="multctrl">
+<div class="controlban"><a href="javascript:if(confirm('Are you sure you want to delete the selected comments?'))$tao('multctrl').submit();">Batch Delete</a></div>
+<table width="800" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr>
+  <th><input type="checkbox" onclick="VerifyRadio();"/></th>
+  <th>Time</th>
+<th>Commenter</th>
+<th>Email</th>
+<th>Content</th>
+<th>IP</th>
+<th>Page</th>
+<th>Actions</th>
+</tr>
+<!-- $list AS $atl -->  
+  <tr onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''">
+    <td align="center"><input name="id[]" type="checkbox" id="id[]" value="{atl['id']}" /></td>
+    <td>{run:}echo date('Y-m-d H:i:s',$atl['times']);{/run}</td>
+    <td><!-- if[$atl['websites']] --><a href="{atl['websites']}" target="_blank" title="Click to view website">{atl['name']}</a><!-- else -->{atl['name']}<!-- end --></td>
+	<td>{atl['emails']}</td>
+    <td>{atl['content']}</td>
+    <td>{atl['ips']}</td>
+   	<td>
+   	<!-- taolistCMS:cms|id=$atl[article_id]|1||staticurl,name -->
+   	<a target="_taogogo" href="../{listCMS['staticurl']}">{listCMS['name']}</a>
+	<!-- end -->
+	</td>
+    <td><a href="?action=comment&id={atl['id']}&ctrl=del" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+  </tr>
+  <!-- END -->
+  </table>
+  <input type="hidden" name="action" value="comment" />
+<input type="hidden" name="ctrl" value="del" />
+</form>
+<div class="navigation">
+		<!-- if($page!=0) --><div class="floatLeft"><a href="?action=comment&ctrl=lists&p={uppage}">&laquo; Previous Page</a></div><!-- end -->
+		<!-- if($downpage!=$page) --><div class="floatRight"><a href="?action=comment&ctrl=lists&p={downpage}">Next Page &raquo;</a></div><!-- end -->
+</div>
+<!-- Used to display a prompt when there are no items -->
+<!-- IF[$_i==0] -->  
+<div style="clear:both;">Sorry, no comments!</div>  
+<!-- END -->  
+{inc:footer}

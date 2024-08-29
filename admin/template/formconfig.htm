@@ -1,0 +1,157 @@
+{inc:header}
+<form action="admin.php" method="post">
+<table width="699" border="0" cellspacing="0" cellpadding="1" class="addtable">
+    <tr>
+      <td width="87" scope="col">Website Name</td>
+      <td width="608" scope="col"><input name="WEBNAME" type="text" id="WEBNAME" title="Name of the website displayed on the front page" value="{webname}"/>
+      </td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Website URL</td>
+      <td width="608" scope="col"><input name="WEBURL" type="text" id="WEBURL"  title="Website URL on the front page"  value="{weburl}"/>
+     <br />Description: Start with http:// and end with /. It is recommended to fill in {webbaseurl}</td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Website Profile</td>
+      <td width="608" scope="col"><textarea name="WEBINFO" id="WEBINFO"  title="Website description on the front page" >{webinfo}</textarea></td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Website Announcement</td>
+      <td width="608" scope="col"><textarea name="ANNOUNCE" id="ANNOUNCE" title="Website announcement on the front page" >{announce}</textarea></td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Admin Directory</td>
+      <td width="608" scope="col"><input name="ADMINDIR" type="text" id="ADMINDIR" title="Relative path to the admin directory, you can modify this parameter and rename the admin folder" value="{admindir}"/></td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Time Offset</td>
+      <td width="608" scope="col"><input name="TIMEMOD" type="text" id="TIMEMOD" title="Adjust server time, positive number adds hours to server time" value="{timemod}"/>
+        <a name="times" id="times"></a><br />
+(Currently {nowtime}, corrected {modtime})</td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Articles Per Page</td>
+      <td width="608" scope="col"><input name="EACHPAGE" type="text" id="EACHPAGE" title="Number of articles displayed per page, affects both backend and frontend lists" value="{eachpage}"/></td>
+    </tr>
+	<tr>
+	  <td scope="col">Text Editor</td>
+	  <td scope="col"><select name="TAOEDITOR" id="TAOEDITOR"  title="Editor used on the article editing page, selecting a non-official editor requires installing a package" >
+        <option value="1">Official Default</option>
+        <option value="2">Xheditor</option>
+      </select></td>
+    </tr>
+	<tr>
+    <td width="87" scope="col">Enable Debugging</td>
+    <td width="608" scope="col"><select name="TAODEBUG" id="TAODEBUG" title="Whether to display all server error messages" >
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select></td>
+  </tr>
+<tr>
+    <td width="87" scope="col">System Directory</td>
+    <td width="608" scope="col"><input name="SYS_ROOT" type="text" id="SYS_ROOT" title="Absolute path to the system directory" value="{sys_root}"/><br />
+(Currently {local})</td>
+  </tr>
+<tr>
+    <td width="87" scope="col">Cache Directory</td>
+    <td width="608" scope="col"><input name="CACHE" type="text" id="CACHE" title="Relative path to the cache directory" value="{cache}"/></td>
+  </tr>
+  <tr>
+    <td width="87" scope="col">Template Cache Time</td>
+    <td width="608" scope="col"><input title="Time interval for template re-compilation, if you are not modifying templates, it is recommended to set a long interval." name="CACHELAST" type="text" id="CACHELAST"  value="{cachelast}"/>seconds</td>
+  </tr>
+<tr>
+    <td width="87" scope="col">Include Directory</td>
+    <td width="608" scope="col"><input name="INC" type="text" id="INC" title="Relative path to the system core files, modification is not recommended" value="{inc}"/></td>
+  </tr>
+<tr>
+    <td width="87" scope="col">Database Type</td>
+    <td width="608" scope="col">
+      <select name="DB" id="DB" title="Changing the database type is not recommended" >
+        <option value="Sqlite">Sqlite</option>
+        <option value="Mysql">Mysql</option>
+      </select>
+      </td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Database Address </td>
+      <td width="608" scope="col"><input name="DB_NAME" type="text" id="DB_NAME"  value="{db_name}" title="Note: For Sqlite database, enter the file path directly. For Mysql, follow the format: 'Database Address|Username|Password|Database Name'. For example: 'localhost|root|root|taocms'"/>
+	
+    </td>
+    </tr>
+    <tr>
+      <td width="87" scope="col">Memcache Configuration</td>
+      <td width="608" scope="col"><input name="MEMCACHE" type="text" id="MEMCACHE"  value="{memcache}" title="Note: Leave blank if not using Memcache. Configuration format: 'Memcache Server IP|Port|Timeout (optional)', for example: '127.0.0.1|11211'"/>
+<a href="admin.php?action=config&amp;ctrl=memflush" onclick="return confirm('Confirm clearing Memcache cache?')">Clear Cache</a>
+</td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Data Table Prefix</td>
+      <td width="608" scope="col"><input name="TB" type="text" id="TB" title="Data table prefix, modification is not recommended" value="{tb}"/></td>
+    </tr>
+	<tr>
+      <td width="87" scope="col">Generate Pure Static Pages</td>
+      <td width="608" scope="col"><select name="CREATHTML" id="CREATHTML" title="Whether to generate pure static pages, selecting this option will add a static generation option in the menu" >
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select></td>
+	</tr>
+	<tr>
+      <td width="87" scope="col">Track Article Views</td>
+      <td width="608" scope="col"><select name="VIEWSCOUNT" id="VIEWSCOUNT" title="Whether to track article view counts" >
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select></td>
+	</tr>
+	    <tr>
+	      <td scope="col">Category URL</td>
+    <td scope="col"><input name="CATURL" type="text" id="CATURL"  value='{caturl}' title="After modifying the category URL, please regenerate the URL in the category management, otherwise the category URL will not change"/>
+    <br />Description: {id} is the category ID, {nickname} is the category alias, such as {id}.html. When using tags, remove the spaces inside the curly brackets, and do not include <strong>single quotes</strong></tr>
+	<tr>
+	      <td scope="col">Article URL</td>
+          <td scope="col"><input name="ATLURL" type="text" id="ATLURL"  value='{atlurl}' title="After modifying the article URL, please regenerate the URL in the article management, otherwise the article URL will not change"/>
+             <br />
+             Description: {Y} year {m} month {d} day {id} article ID {slug} article alias, such as {Y}/{m}/{id}.htm. When using tags, remove the spaces inside the curly brackets, and do not include <strong>single quotes</strong>
+             </td>
+	</tr>
+	
+    <tr>
+      <td width="87" scope="col">Template</td>
+      <td width="608" scope="col">
+	  <SELECT  name="THEME" id="THEME" title="Selecting different templates will present the website in different styles" >
+	<!-- $themelist AS $tv -->
+	<!-- if($tv."/"==$theme) -->selected<!-- end --> >{tv}<!-- if($tv."/"==$theme) -->selected<!-- end --> >{tv}<option value="{tv}/" <!-- if($tv."/"==$theme) -->selected<!-- end --> >{tv}</option>
+	<!-- END -->  
+	</SELECT>    </tr>
+	<tr>
+      <td colspan="2" scope="col"><input name="action" type="hidden" value="config" />
+<input name="ctrl" type="hidden" value="update" />
+<input type="submit" name="Submit" id="submits" value="Save Configuration" /></td>
+    </tr>
+</table>
+</form>
+<script language="javascript">
+SelectItemByValue($tao('CREATHTML'),{creathtml});
+SelectItemByValue($tao('TAODEBUG'),{taodebug});
+SelectItemByValue($tao('TAOEDITOR'),{taoditor});
+SelectItemByValue($tao('VIEWSCOUNT'),{viewscount});
+SelectItemByValue($tao('DB'),'{db}');
+{run:}
+
+if( RUNONSAE ||RUNONBAE )
+	{
+	echo '
+	alert("In the SAE/BAE environment, configurations cannot be modified. Please manually modify config.php");
+	';
+	
+	}
+{/run}
+
+if($tao('WEBURL').value=='./'){
+	alert('Please set the website address!');
+	$tao('WEBURL').focus();
+	
+}
+</script>
+
+{inc:footer}

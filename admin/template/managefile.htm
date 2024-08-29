@@ -1,0 +1,45 @@
+{inc:header}
+<div class="searchban">
+<form action="admin.php" method="get" id="toolform" enctype="multipart/form-data"> 
+<b> Toolbar：</b>  
+Current location:
+	<input name="path" type="text" id="path" value="{path}" />
+	<input type="hidden" name="action" value="file" />
+	<input type="hidden" name="ctrl" id="toolctrl" value="lists" />
+	<input type="hidden" name="isdir" id="isdir" value="1" />
+	<input name="submit" type="submit" id="submit" value="进入" />
+	new
+	:
+	<input name="name" type="text" id="name" size="15" />
+    <in<input name="fbtn" type="submit" id="fbtn" value="Create File" onclick="$tao('toolctrl').value='create';$tao('isdir').value='0';"/>
+<input type="submit" name="Submit" value="Create Folder" onclick="$tao('toolctrl').value='create';" />
+【<a href="javascript:void(0)" onclick="history.go(-1)">Back</a>·<a href="javascript:void(0)"  onclick="history.go(+1)">Forward</a>·<a href="javascript:void(0)" onclick="window.location.reload();">Refresh</a>】
+<a href="#" class="linkbtn" onclick="if(!window.open('admin.php?action=file&amp;ctrl=upload&path={path}','filewindow', 'height=100, width=350, top=400, left=400'))alert('Cannot open the upload window. You may try clicking the yellow prompt bar at the top of the browser and select “Temporarily Allow Pop-ups”');">Upload</a>
+</form>
+
+</div>
+<table width="800" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr>
+  <th >file name</th>
+<th >modification time</th>
+<th>file size</th>
+<th>operation</th>
+</tr>
+<!-- $dirdata AS $dirs -->  
+  <tr onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''">
+    <td><a href="?action=file&ctrl=lists&path={dirs['path']}">{dirs['name']}</a></td>
+	<td>{dirs['mtime']}</td>
+    <td>{dirs['size']}</td>
+    <td><a href="?action=file&amp;ctrl=lists&amp;path={dirs['path']}">input</a> · <a href="?action=file&amp;ctrl=del&amp;path={dirs['path']}" onclick="return confirm('ready delete')">delete</a> </td>
+  </tr>
+  <!-- END -->
+  <!-- $filedata AS $files -->  
+  <tr onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''">
+    <td><a href="?action=file&ctrl=edit&path={files['path']}">{files['name']}</a></td>
+	<td>{files['mtime']}</td>
+    <td>{files['size']}</td>
+    <td><a href="?action=file&amp;ctrl=download&amp;path={files['path']}">download</a> · <a href="?action=file&amp;ctrl=edit&amp;path={files['path']}">编辑</a> · <a href="?action=file&amp;ctrl=del&amp;path={files['path']}" onclick="return confirm('ready delete')">delete</a></td>
+  </tr>
+  <!-- END -->
+</table>
+{inc:footer}

@@ -1,0 +1,31 @@
+{inc:header}
+<ul id="mainnav">
+<li><a href="admin.php?action=frame&ctrl=main" target="mainFrame">Admin Homepage</a></li>
+<!-- IF[CREATHTML==1] --><li><a href="../index.php?createprocess=1" target="mainFrame">Generate Homepage</a></li><!-- end -->
+<li><a href="#" class="bignav">Article Management</a></li>
+<li><a href="admin.php?action=cms&ctrl=add" target="mainFrame">Add Article</a></li>
+<li><a href="admin.php?action=cms&ctrl=lists" target="mainFrame">Manage Articles</a></li>
+<!-- IF[$_SESSION[TB.'admin_level']=='admin'] -->
+<li><a href="admin.php?action=category&ctrl=lists" target="mainFrame">Manage Categories</a></li>
+<li><a href="admin.php?action=spider&ctrl=display" target="mainFrame">Collection Management</a></li>
+<li><a href="#" class="bignav">Data Management</a></li>
+<li><a href="admin.php?action=sql&ctrl=display" target="mainFrame">Execute SQL</a></li>
+<!-- IF[DB=='Sqlite'] -->
+<li><a href="../{dbname}" target="mainFrame" onclick="return confirm('Confirm download of the database? Complete backup\nYou also need to back up the pictures directory and files. To restore\nsimply restore the database file and files in the pictures directory.')">Backup Sqlite Database</a></li><!-- end -->
+<li><a href="#" class="bignav">Other Management</a></li>
+<li><a href="admin.php?action=comment&ctrl=lists" target="mainFrame">Manage Comments</a></li>
+<li><a href="admin.php?action=link&ctrl=lists" target="mainFrame">Friend Links</a></li>
+<li><a href="admin.php?action=admin&ctrl=lists" target="mainFrame">User Management</a></li>
+<li><a href="admin.php?action=file&ctrl=lists" target="mainFrame">File Management</a></li>
+<li><a href="#" class="bignav">General Settings</a></li>
+<li><a href="admin.php?action=datastore&ctrl=display" target="mainFrame">Import/Export</a></li>
+<li><a href="admin.php?action=config&ctrl=display" target="mainFrame">Website Settings</a></li>
+<!-- end -->
+<li><a href="../" target="_blank">Website Homepage</a></li>
+
+<li><a href="#" class="bignav">Personal Management</a></li>
+<li><a href="admin.php?action=user&ctrl=mod" target="mainFrame">Account Modification</a></li>
+<li><a href="admin.php?action=frame&ctrl=logout">Logout</a></li>
+</ul>
+</body>
+</html>

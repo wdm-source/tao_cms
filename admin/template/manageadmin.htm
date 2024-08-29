@@ -1,0 +1,30 @@
+{inc:header}
+<div class="controlban"><a href="?action=admin&ctrl=add">+ Add</a><div style="clear:both;"></div></div>
+<table width="813" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr>
+  <th width="10%">ID</th>
+<th>Username</th>
+<th width="40%">Permissions</th>
+<th width="10%">Status</th>
+<th>Actions</th>
+</tr>
+<!-- $list AS $atl -->  
+  <tr>
+    <td>{atl['id']}</td>
+    <td><a href="?action=admin&id={atl['id']}&ctrl=edit">{atl['name']}</a></td>
+	<td>
+	{run:}$authlist=array();$authlist=explode('|',$atl['auth']);{/run}
+	
+	{cats[$authlist[1]]['name']}{admins[$authlist[0]]} 
+	</td>
+    <td>{run:}echo Base::catstatus($atl['status']);{/run}</td>
+    <td><a href="?action=admin&id={atl['id']}&ctrl=edit">Edit</a> · <a href="?action=admin&id={atl['id']}&ctrl=del" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+  </tr>
+  <!-- END -->
+</table>
+
+<!-- Used to display a prompt when there are no items -->
+<!-- IF[$_i==0] -->  
+<font color="#800000">Sorry, no data available. Please add some first! <a href="?action=manageadmin&ctrl=add">Add</a></font>  
+<!-- END -->  
+{inc:footer}

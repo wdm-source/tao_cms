@@ -1,0 +1,81 @@
+{inc:header}
+<table width="800" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr>
+<th width="186">Parameter Name</th>
+<th width="610">Details</th>
+</tr>
+  <tr>
+    <td>Publish Article:</td>
+	<td>{articleData['count']} articles [<a href="admin.php?action=cms&amp;ctrl=add">Publish Article</a>] [<a href="admin.php?action=cms&amp;ctrl=lists">Manage Articles</a>]</td>
+  </tr>
+    <tr>
+    <td>System Information:</td>
+	<td>{run:}echo PHP_OS.'['.$_SERVER["SERVER_SOFTWARE"].']'{/run}</td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Maximum Attachment:</td>
+	<td>{run:}echo ini_get('upload_max_filesize'){/run}</td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Absolute Path:</td>
+	<td>{run:}echo $_SERVER['DOCUMENT_ROOT'];{/run}</td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Free Space:</td>
+	<td>{run:}echo round((@disk_free_space(".")/(1024*1024)),2){/run}M</td>
+  </tr>
+      <tr>
+    <td>Current Server Time:</td>
+	<td>{run:}echo Base::getnowtime('Y-m-d H:i:s');{/run}(<a href="admin.php?action=config&ctrl=display#times">Settings</a>)</td>
+  </tr>
+  <tr>
+    <td>Website URL:</td>
+	<td>{run:}echo WEBURL;{/run}{run:}if(WEBURL=='./'){{/run}(<a style="color:red;" href="admin.php?action=config&ctrl=display">Not Set</a>, it is recommended to <a href="admin.php?action=config&ctrl=display#times">set it immediately</a> as {run:}echo "http://".$_SERVER['HTTP_HOST'].str_replace(ADMINDIR.'admin.php','',$_SERVER['SCRIPT_NAME']);{/run}){run:}}{/run}</td>
+  </tr>
+</table>
+<table width="800" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr>
+<th colspan="2">About the Program</th>
+</tr>
+  <tr>
+    <td width="182">System Name:</td>
+    <td width="614">taoCMS Website Content Management System</td>
+  </tr>
+  <tr>
+    <td>Current Version:</td>
+    <td>{GLOBALS['version']} <a id="singlebtn" href="http://www.taocms.org/update.php?v={GLOBALS['version']}&nowtime={GLOBALS['starttime']}">Check for Updates</a></td>
+  </tr>
+  <tr>
+    <td>Program Development:</td>
+    <td>taoCMS</td>
+  </tr>
+  <tr>
+    <td>Special Thanks:</td>
+    <td>doudou, ymk18, Sunny, Yanmin, King of Chaos, ddddbhm, PPPio, jadacheng</td>
+  </tr>
+  <tr>
+    <td>Download Links:</td>
+    <td><a href="http://www.taocms.org/tagtaocms%E6%A8%A1%E6%9D%BF.html" target="_blank">Template Download</a> · <a href="http://www.taocms.org/tagtaocms%E4%B8%8B%E8%BD%BD.html" target="_blank">System Download</a></td>
+  </tr>
+  <tr>
+    <td>Technical Support:</td>
+    <td><a href="http://www.taocms.org" target="_blank">taoCMS Official Website</a> <a href="http://taobbs.sinaapp.com" target="_blank">taoCMS Forum</a></td>
+  </tr>
+   <tr>
+    <td>♥♥ Donations ♥♥:</td>
+    <td>
+<a href="http://www.taocms.org/donate.htm" target="_blank">♥ Donate to Support, Help Me Get Food to Survive ♥</a>
+    </td>
+  </tr>
+   <tr>
+    <td>Official News:</td>
+    <td>
+    <span id="notice">None</span>
+    <script type="text/javascript" src="http://www.taocms.org/news.php?v={GLOBALS['version']}&nowtime={GLOBALS['starttime']}"></script>
+    </td>
+  </tr>
+</table>
+{inc:footer}

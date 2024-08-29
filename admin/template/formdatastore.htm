@@ -1,0 +1,30 @@
+{inc:header}
+<form action="admin.php" method="post" enctype="multipart/form-data">
+<table width="699" border="0" cellspacing="0" cellpadding="1" class="list">
+<tr class="tabtop">
+<th> Recover Data </th>
+</tr>
+<tr>
+<td scope="col"><input type="file" name="file" /><input name="action" type="hidden" value="datastore" />
+<input name="ctrl" type="hidden" value="update" />
+<input type="submit" name="Submit" value=" Import Recovery "/><br />
+If the URL is abnormal after the data is imported, re-generate the article URL in the backend.
+</td>
+</tr>
+<tr class="tabtop">
+<th> Backup Data </th>
+</tr>
+<tr>
+<td ><b> Back Up All:</b><a href="? action=datastore&amp; ctrl=create&amp; bulist=admin|category|cms|comment|link|relations|relatocms"> Generate All Backup Files </a><br />
+<b> Only Back Up Articles:</b> from the first
+<input name="from" type="text" id="from" class="sinput"/>
+Chapter to #
+<input name="to" type="text" id="to" class="sinput"/>
+Article
+<input type="button" name="Submit2" value=" Partial Backup "class="sinput" onclick="window.location.href='? action=datastore&ctrl=create&amp; bulist=cms&from='+$tao('from').value+'&to='+($tao('to').value-$tao('from').value); return false;" />
+<br />
+<b> Back Up Only Data Other Than Articles:</b><a href="? action=datastore&amp; ctrl=create&amp; bulist=admin|category|comment|link|relations|relatocms"> Generate a Backup File </a></td>
+</tr>
+</table>
+</form>
+{inc:footer}

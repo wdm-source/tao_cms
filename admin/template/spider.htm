@@ -1,0 +1,77 @@
+{inc:header}
+<form action="admin.php" method="get">
+<table width="769" border="0" cellspacing="0" cellpadding="1" class="addtable">
+    <tr>
+      <td width="110" scope="col">Collection URL:</td>
+      <td width="585" scope="col">
+        <input name="front" type="text" style=" width:300px;" id="front"  value="http://xiaoxixi.sinaapp.com/?id-" size="40"/>
+        (
+        <input name="start" type="text" id="start" style=" width:60px;" value="1500" size="10"/>
+        to
+        <input name="rend" type="text" id="rend" style=" width:60px;"  value="1550" size="10"/>
+        )
+        <input name="back" type="text" id="back" style=" width:100px;"  value=".htm" size="15"/>
+      </td>
+    </tr>
+    <tr>
+      <td scope="col"><p>Pages per Collection:</p></td>
+      <td scope="col"><input name="each" type="text" id="each"  value="1"/></td>
+    </tr>
+    <tr>
+      <td scope="col"><p>Character Encoding:</p></td>
+      <td scope="col"><input name="basecode" type="text" id="basecode"  value="utf-8"/></td>
+    </tr>
+    <tr>
+      <td width="110" scope="col">Title Collection Rule:</td>
+      <td width="585" scope="col">
+        <textarea name="titlepreg" cols="40" id="titlepreg"><title>[title]</title></textarea>
+        <br />
+        *[title] is the title tag
+      </td>
+    </tr>
+    <tr>
+      <td width="110" scope="col">Content Collection Rule:</td>
+      <td width="585" scope="col">
+        <textarea name="contentpreg" cols="40" id="contentpreg"><span class="smalltxt">[content]<div id="digit"></textarea>
+        <br />
+        *[content] is the content tag
+      </td>
+    </tr>
+    <tr>
+      <td width="110" scope="col">Collection Category:</td>
+      <td width="585" scope="col">
+        <SELECT name="cat" id="cat">
+          <option value="0">Uncategorized</option>
+          <!-- $category AS $atl -->
+          <option value="{atl['id']}">{atl['name']}</option>
+          <!-- END -->
+        </SELECT>
+      </td>
+    </tr>
+    <tr>
+      <td scope="col">Filter Words:</td>
+      <td scope="col">
+        <textarea name="repword">happy|taoCMS
+happy|happy</textarea>
+        <br />(Replacement rules: one per line, separated by |. The part before | is the text to be replaced, and the part after | is the replacement text.
+        <br />For example, the default first line replaces “happy” with “taoCMS”.)
+      </td>
+    </tr>
+    <tr>
+      <td scope="col">Keep Links</td>
+      <td scope="col"><input name="llink" type="checkbox" id="llink" value="1" class="sinput" checked /></td>
+    </tr>
+    <tr>
+      <td scope="col">Test Collection</td>
+      <td scope="col"><input name="test" type="checkbox" id="test" value="1"  class="sinput" /></td>
+    </tr>
+    <tr>
+      <td colspan="2" scope="col">
+        <input name="action" type="hidden" value="spider" />
+        <input name="ctrl" type="hidden" value="execute" />
+        <input type="submit" name="Submit" id="submits" value="Start Collection" />
+      </td>
+    </tr>
+</table>
+</form>
+{inc:footer}

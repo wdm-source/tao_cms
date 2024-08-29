@@ -1,0 +1,104 @@
+{inc:header}
+<form action="admin.php" method="post" onsubmit="if($('name').value==''){alert('Article title must be filled in');return false;}">
+
+  <table width="750" border="0" cellspacing="0" cellpadding="1" class="addtable">
+    <tr>
+      <td width="100" scope="col">Title:</td>
+      <td width="608" scope="col"><input name="name" type="text" id="name" value="{o['name']}" /></td>
+    </tr>
+	 
+	 <tr>
+      <td scope="col">Category:</td>
+      <td scope="col"><SELECT  name="cat" id="cat">
+	<option value="0">Ungrouped</option>
+	<!-- $category AS $atl -->
+	<option value="{atl['id']}" <!-- if($atl['id']==$o['cat']) -->selected<!-- end -->  >{atl['name']}</option>
+	<!-- END -->  
+	</SELECT></td>
+    </tr>
+	 <tr>
+      <td colspan="2" scope="col">
+<textarea name="content" id="content" style="width:100%;" class="xheditor {tools:'full',width:'740',height:'275',layerShadow:0,internalScript:true,inlineScript:true,linkTag:true,upLinkUrl:'admin.php?action=upload&ctrl=editor',upImgUrl:'admin.php?action=upload&ctrl=editor',upFlashUrl:'admin.php?action=upload&ctrl=editor',upMediaUrl:'admin.php?action=upload&ctrl=editor'}">{o['content']}</textarea>
+<!-- IF[TAOEDITOR==1] -->
+<script type="text/javascript" src="images/default/tinyeditor.js"></script>
+<script type="text/javascript">
+var instance=new TINY.editor.edit('editor',{
+	id:'content',
+	width:740,
+	height:175,
+	cssclass:'contentls',
+	controlclass:'tecontrol',
+	rowclass:'teheader',
+	dividerclass:'tedivider',
+	controls:['bold','italic','underline','strikethrough','|','subscript','superscript','|', 'orderedlist','unorderedlist','|','outdent','indent','|','leftalign',
+			  'centeralign','rightalign','blockjustify','|','unformat','|','undo','redo','print','n',
+			  'font','size','style','forecolor','backcolor','|','image','swf','media','upload','|','hr','link','unlink','|','cut','copy','paste'],
+	footer:true,
+	fonts:['Kaishu','SimSun','SimHei','Verdana','Arial','Georgia'],
+	xhtml:true,
+	cssfile:'style.css',
+	uploadexc:'admin.php?action=upload&ctrl=display',
+	bodyid:'editor',
+	footerclass:'tefooter',
+	toggle:{text:'Source Code',activetext:'View',cssclass:'toggle'},
+	resize:{cssclass:'resize'}
+});
+</script>
+<!-- end -->
+<!-- IF[TAOEDITOR==2] -->
+<br /><span style="font-size:12px;color:gray;" id="alerts">*If the editor is not loaded, please go to taoCMS to <a href="http://www.taocms.org/cat6.html" target="_blank">download the dedicated Xheditor editor</a>, extract it and place it in the system directory /admin/images/xheditor/</span>
+<script type="text/javascript" src="images/xheditor/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="images/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<!-- END -->
+</td>
+    </tr>
+	 <tr>
+       <td scope="col">Alias:</td>
+	   <td scope="col"><input name="slug" type="text" id="slug" value="{o['slug']}" /></td>
+    </tr>
+	 <tr>
+       <td scope="col">Tags:</td>
+	   <td scope="col"><input name="tags" type="text" id="tags" value="{o['tags']}" /></td>
+    </tr>
+	<tr>
+      <td scope="col">Link:</td>
+      <td scope="col"><input name="link" type="text" id="link" value="{o['link']}" /></td>
+    </tr>
+	<tr>
+      <td scope="col">Thumbnail:</td>
+      <td scope="col"><input name="thumbpic" type="text" id="thumbpic" value="{o['thumbpic']}"/><a href="#" class="linkbtn" id="singlebtn"  class="uploadbtn" onclick="if(!window.open('admin.php?action=upload&ctrl=display&&inid=thumbpic','newwindow', 'height=200, width=350, top=400, left=400'))alert('Unable to pop up the upload window, you can try clicking the yellow prompt bar at the top of the browser and select "Temporarily allow pop-ups"');" >Upload Thumbnail</a></td>
+    </tr>
+		 <tr>
+      <td scope="col">Sort Order:</td>
+      <td scope="col"><input name="orders" type="text" id="orders" value="{o['orders']}" /></td>
+    </tr>
+	<tr>
+      <td scope="col">Allow Comments:</td>
+      <td scope="col"><input name="allowcmt" id="allowcmt" type="checkbox" value="1" checked /></td>
+    </tr>
+    <tr>
+      <td scope="col">Save Remote Images:</td>
+      <td scope="col"><input name="remotepic" id="remotepic" type="checkbox" value="1" {run:}if(WEBURL=='./')echo 'onclick="alert(\'Please set the website URL before selecting this option, otherwise it may cause abnormal image addresses\');return false;"'{/run} /></td>
+    </tr>
+	<tr>
+      <td scope="col">Status:</td>
+      <td scope="col"><SELECT  name="status" id="status">
+	<option value="0" >Draft</option>
+	<option value="1" selected="selected" >Published</option>
+	<option value="-1"  >Hidden</option>
+      </SELECT></td>
+    </tr>
+	<tr>
+      <td colspan="2" scope="col"><input name="action" type="hidden" value="cms" />
+<input name="ctrl" type="hidden" value="{goctrl}" />
+<input name="id" type="hidden" value="{o['id']}" />
+<input type="submit" name="Submit" id="submits" value="Submit" onmouseover="instance.post();" /></td>
+    </tr>
+  </table>
+</form>
+<script language="javascript">
+//alert(T$('orders').value);
+SelectItemByValue($tao('status'),'{o['status']}');
+SelectRadio($tao('allowcmt'),{o['allowcmt']});
+</script>
+{inc:footer}
